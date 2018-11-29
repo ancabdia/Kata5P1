@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import java.sql.Connection;
@@ -11,16 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
-
-/**
- *
- * @author Usuario
- */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:sqlite:kata5.db";
                 
@@ -37,5 +24,14 @@ public class Main {
         while (rs.next()) {
             System.out.println(rs.getInt("id") + "\t" + rs.getString("Name") + "\t" + rs.getString("Apellidos") + "\t" + rs.getString("Departamento") + "\t");
         }
+        
+        // Instrucción SQL para crear nueva tabla
+        sql = "CREATE TABLE IF NOT EXISTS EMAIL (\n"
+            + " Id integer PRIMARY KEY AUTOINCREMENT,\n"
+            + " Mail text NOT NULL);";
+        stmt = con.createStatement();
+        // Se crea la nueva tabla
+        stmt.execute(sql);
+        System.out.println("Tabla creada");
     }
 }
